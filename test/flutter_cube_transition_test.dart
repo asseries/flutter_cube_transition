@@ -35,7 +35,6 @@ void main() {
           home: Scaffold(
             body: FlutterCubeTransition(
               faces: faces,
-              showInstructions: true,
               showControls: false,
             ),
           ),
@@ -55,7 +54,6 @@ void main() {
             body: FlutterCubeTransition(
               faces: faces,
               showControls: true,
-              showInstructions: false,
             ),
           ),
         ),

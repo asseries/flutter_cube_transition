@@ -25,7 +25,7 @@ class FlutterCubeTransition extends StatefulWidget {
   final EdgeInsets? margin;
 
   const FlutterCubeTransition({
-    Key? key,
+    super.key,
     this.size = 280,
     required this.faces,
     this.showControls = true,
@@ -43,7 +43,7 @@ class FlutterCubeTransition extends StatefulWidget {
     this.borderRadius,
     this.textPadding,
     this.margin = const EdgeInsets.all(8.0),
-  }) : super(key: key);
+  });
 
   @override
   State<FlutterCubeTransition> createState() => _FlutterCubeTransitionState();
@@ -285,7 +285,7 @@ class _FlutterCubeTransitionState extends State<FlutterCubeTransition> with Sing
         backgroundColor: color,
         foregroundColor: Colors.white,
         elevation: 4,
-        shadowColor: color.withOpacity(0.3),
+        shadowColor: color.withAlpha(76),
       ),
       child: Text(label),
     );
@@ -323,7 +323,7 @@ class _FlutterCubeTransitionState extends State<FlutterCubeTransition> with Sing
         borderRadius: widget.borderRadius ?? BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(_isDragging ? 0.8 : 0.6),
+            color: Colors.black.withAlpha(_isDragging ? 204 : 153),
             blurRadius: _isDragging ? 20 : 15,
             spreadRadius: _isDragging ? 5 : 3,
           ),

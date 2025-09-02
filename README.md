@@ -29,6 +29,20 @@ Perfect for building creative UIs, page transitions, or fun interactive elements
 </p>
 ---
 
+## Simple Code
+
+```dart
+FlutterCubeTransition(
+            size: MediaQuery.of(context).size.width *.6,
+            margin: EdgeInsets.only(top: 140),
+            faces: {
+              CubeFace.right: CubeFaceData(color: Colors.green),
+              CubeFace.left: CubeFaceData(color: Colors.red),
+              CubeFace.back: CubeFaceData(color: Colors.white),
+              CubeFace.front: CubeFaceData(color: Colors.red),
+            },
+          ),
+```
 
 ## Use
 ```dart
@@ -136,5 +150,5 @@ Add the dependency in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_cube_transition: ^1.0.0
+  flutter_cube_transition: ^1.0.2
 ```

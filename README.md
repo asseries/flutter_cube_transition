@@ -1,40 +1,140 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_cube_transition
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+[![pub package](https://img.shields.io/pub/v/flutter_cube_transition.svg)](https://pub.dev/packages/flutter_cube_transition)
+[![GitHub stars](https://img.shields.io/github/stars/asseries/flutter_cube_transition)](https://github.com/asseries/flutter_cube_transition)
+[![GitHub issues](https://img.shields.io/github/issues/asseries/flutter_cube_transition)](https://github.com/asseries/flutter_cube_transition/issues)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+A customizable and interactive **3D cube transition** widget for Flutter apps.  
+Perfect for building creative UIs, page transitions, or fun interactive elements. ✨
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+## ✨ Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- 🎛 Interactive drag-based 3D cube rotation
+- 🎮 Built-in control buttons (`LEFT`, `RIGHT`, `RESET`)
+- 📱 Smooth animations with custom duration & curve
+- 💡 Haptic feedback support
+- 🎨 Fully customizable cube faces (text, colors, gradients, icons, widgets)
+- 🔧 Utility helpers (`CubeUtils`) for quick face creation
+- 🖼 Border, padding, margin & radius customization
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## 📸 Demo
 
-## Usage
+<p  align="center">
+<img  src="https://raw.githubusercontent.com/asseries/flutter_cube_transition/main/doc/demo.gif?raw=true"  width="350"/>
+<br>
+</p>
+---
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
 
+## Use
 ```dart
-const like = 'sample';
+FlutterCubeTransition(
+                size: 220,
+                backgroundColor: Colors.redAccent,
+                animationDuration: Duration(milliseconds: 200),
+                animationCurve: Curves.easeOut,
+                enableHapticFeedback: true,
+                perspectiveStrength: 0.002,
+                showControls: false,
+                margin: EdgeInsets.symmetric(horizontal: 32,vertical: 48),
+                textAlign: Alignment.topLeft,
+                borderRadius: BorderRadius.circular(16),
+                dragSensitivity: 0.008,
+                // Biroz sekinroq qilish
+                dragThreshold: 0.6,
+                // Osonroq switch qilish
+                onRotationChanged: (rotation) {
+                  setState(() {
+                    _currentRotation = rotation;
+                  });
+                },
+                faceTextStyle: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  shadows: [Shadow(color: Colors.black87, offset: Offset(2, 2), blurRadius: 6)],
+                ),
+                faces: {
+                  CubeFace.front: CubeFaceData(
+                    color: Colors.red.withOpacity(0.8),
+                    text: "OLD",
+                    child: Image.network(
+                      "https://picsum.photos/512/512?random=5",
+                      fit: BoxFit.cover,
+                      width: 280,
+                      height: 280,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 280,
+                          height: 280,
+                          color: Colors.red,
+                          child: const Icon(Icons.error, color: Colors.white, size: 50),
+                        );
+                      },
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Container(
+                          width: 280,
+                          height: 280,
+                          color: Colors.red.withOpacity(0.3),
+                          child: const Center(child: CircularProgressIndicator(color: Colors.white)),
+                        );
+                      },
+                    ),
+                  ),
+                  CubeFace.back: CubeFaceData(
+                    color: Colors.green.withOpacity(0.8),
+                    text: "ORQA",
+                    child: Image.network(
+                      "https://picsum.photos/512/512?random=3",
+                      fit: BoxFit.cover,
+                      width: 280,
+                      height: 280,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 280,
+                          height: 280,
+                          color: Colors.green,
+                          child: const Icon(Icons.error, color: Colors.white, size: 50),
+                        );
+                      },
+                    ),
+                  ),
+                  CubeFace.right: CubeFaceData(
+                    color: Colors.yellow.withOpacity(0.8),
+                    text: "O'NG",
+                    child: Image.network("https://picsum.photos/512/512?random=9"),
+                  ),
+                  CubeFace.left: CubeFaceData(
+                    color: Colors.blue.withOpacity(0.8),
+                    text: "CHAP",
+                    child: Image.network(
+                      "https://picsum.photos/512/512?random=7",
+                      fit: BoxFit.cover,
+                      width: 280,
+                      height: 280,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 280,
+                          height: 280,
+                          color: Colors.blue,
+                          child: const Icon(Icons.error, color: Colors.white, size: 50),
+                        );
+                      },
+                    ),
+                  ),
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
-# flutter_cube_transition
+## 🚀 Installation
+
+Add the dependency in your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  flutter_cube_transition: ^1.0.0
+```
